@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<title>EXAM SCHEDULE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../../css/cssHtml.css">
+<script src="../../../js/javaScriptForPage.js"></script>
+<script src="../../../js/manageUser/mangeStudents.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<body onload="loadDataStudents()">
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+        <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="../../index.html">EXAM SCHEDULE</a>
+        <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close<i class="fa fa-remove"></i></a>
+        <div>
+            <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">จัดการผู้ใช้<i class="fa fa-caret-down"></i></a>
+            <div id="demo" class="w3-hide">
+                <a class="w3-bar-item w3-button" style="margin-left: 8%" href="./manageStudent.html">จัดการนิสิต</a>
+                <a class="w3-bar-item w3-button" style="margin-left: 8%" href="./../manageTeacher/manageTeacher.html">จัดการอาจารย์</a>
+                <a class="w3-bar-item w3-button" style="margin-left: 8%" href="./../manageStaff/manageStaff.html">จัดการเจ้าหน้าที่ทั่วไป</a>
+            </div>
+        </div>
+        <a class="w3-bar-item w3-button" href="../../manageSubject/manageSubject.html">จัดการรายวิชา</a>
+        <a class="w3-bar-item w3-button" href="../../manageBuliding/manageBuliding.html">จัดการตึก</a>
+        <a class="w3-bar-item w3-button" href="../../manageRoom/manaageRoom.html">จัดการห้อง</a>
+        <a class="w3-bar-item w3-button" href="../../manageCourse/manageCourse.html">จัดการคลอสเรียน</a>
+        <a class="w3-bar-item w3-button" href="../../manageExam/manageExam.html">จัดการการสอบ</a>
+        <a class="w3-bar-item w3-button" href="../../manageTerm/manageTerm.html">จัดการปีการศึกษา</a>
+        <br>
+        <a class="w3-bar-item w3-button" href="../../../login.html"><img src="../../../logout.png" style="width:25px;height:25px">&nbsp;ออกจากระบบ</a>
+    </nav>
+
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay">
+    </div>
+    <div class="w3-main" style="margin-left:250px;">
+        <div id="myTop" class="w3-container w3-top w3-theme w3-large">
+            <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+                <span id="myIntro" class="w3-hide">EXAM SCHEDULE</span></p>
+        </div>
+        <header class="w3-container w3-theme" style="padding:64px 32px">
+                <p style="margin-left: 70%; display: inline;" id="">User:</p>
+                <p style="display: inline;" id="userUI"></p>&nbsp;&nbsp;
+                Type:
+                <p style="display: inline" id="typeUI"></p>&nbsp;&nbsp;
+                This Year:
+                <p style="display: inline" id="yearUI"></p>
+            <h1 class="w3-xxxlarge">EXAM SCHEDULE</h1>
+        </header>
+
+
+        <div class="w3-container" style="padding:32px">
+            <!-- ตรงนี้เค้าไว้ใส่เนื้อหา -->
+            <style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                
+                th,
+                td {
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                tr:nth-child(even) {
+                    background-color: #f2f2f2
+                }
+                
+                th {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+            </style>
+            </head>
+
+            <body>
+                <h2>จัดการข้อมูลนิสิต</h2>
+                <div style="text-align: right">
+                    <a href="./manageStudentAdd.html"><button class="button" style="margin-right: 2%; width: 100px"><span>เพิ่มข้อมูล</span></button></a>
+                </div>
+                <br>
+                <table id="listTable">
+                    <tr>
+                        <th>StudentID</th>
+                        <th>ชื่อ</th>
+                        <th>นามสกุล</th>
+                        <th>คณะ</th>
+                        <th>สาขา</th>
+                        <th>เบอร์โทร</th>
+                        <th>Email</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </table>
+
+
+        </div>
+
+        <footer class="w3-container w3-theme" style="padding:32px">
+            <p>Footer information goes here</p>
+        </footer>
+
+    </div>
+    </body>
+
+</html>

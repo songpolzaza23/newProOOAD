@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<title>EXAM SCHEDULE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/cssHtml.css">
+<script src="../../js/javaScriptForPage.js"></script>
+<script src="../../js/manageExam.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<body onload="initDataToExam()">
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+        <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#">EXAM SCHEDULE</a>
+        <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close<i
+                class="fa fa-remove"></i></a>
+        <div>
+            <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">จัดการผู้ใช้<i
+                    class="fa fa-caret-down"></i></a>
+            <div id="demo" class="w3-hide">
+                <a class="w3-bar-item w3-button" style="margin-left: 8%" href="../../main/manageUsers/manageStudent/manageStudent.html">จัดการนิสิต</a>
+                <a class="w3-bar-item w3-button" style="margin-left: 8%" href="../../main/manageUsers/manageTeacher/manageTeacher.html">จัดการอาจารย์</a>
+                <a class="w3-bar-item w3-button" style="margin-left: 8%" href="../../main/manageUsers/manageStaff/manageStaff.html">จัดการเจ้าหน้าที่ทั่วไป</a>
+            </div>
+        </div>
+        <a class="w3-bar-item w3-button" href="../manageSubject/manageSubject.html">จัดการรายวิชา</a>
+        <a class="w3-bar-item w3-button" href="">จัดการตึก</a>
+        <a class="w3-bar-item w3-button" href="">จัดการห้อง</a>
+        <a class="w3-bar-item w3-button" href="">จัดการคอร์สเรียน</a>
+        <a class="w3-bar-item w3-button" href="./manageExam.html">จัดการการสอบ</a>
+        <a class="w3-bar-item w3-button" href="">ค้นหาห้องสอบ</a>
+        <a class="w3-bar-item w3-button" href="">ดูคะแนนสอบ</a>
+        <a class="w3-bar-item w3-button" href="">ดูรายการการสอบ</a>
+        <br>
+        <a class="w3-bar-item w3-button" href="../../login.html"><img src="../../logout.png" style="width:25px;height:25px">&nbsp;ออกจากระบบ</a>
+    </nav>
+
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay">
+    </div>
+    <div class="w3-main" style="margin-left:250px;">
+        <div id="myTop" class="w3-container w3-top w3-theme w3-large">
+            <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+                <span id="myIntro" class="w3-hide">EXAM SCHEDULE</span></p>
+        </div>
+        <header class="w3-container w3-theme" style="padding:64px 32px">
+            <p style="margin-left: 70%; display: inline;" id="">User:</p>
+            <p style="display: inline;" id="userUI"></p>&nbsp;&nbsp; Type:
+            <p style="display: inline" id="typeUI"></p>&nbsp;&nbsp; This Year:
+            <p style="display: inline" id="yearUI"></p>
+
+            <h1 class="w3-xxxlarge">จัดการการสอบ</h1>
+        </header>
+
+        <div class="w3-container" style="padding:32px;overflow:auto">
+            <!-- ตรงนี้เค้าไว้ใส่เนื้อหา -->
+
+            <h3 style="margin-left: 5%">คอร์ส</h3>
+            คอร์ส : <select id="courses" name="" onchange="selectCourse()" style="width: 320px" required>
+                <option disabled selected hidden>เลือก...</option>
+                <option value=""></option>
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <h3 style="margin-left: 5%">ห้องสอบ</h3>
+            ห้อง : <select id="rooms" name="" onchange="selectRoom()" style="width: 320px" required>
+                <option disabled selected hidden>เลือก...</option>
+                <option value=""></option>
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <h3 style="margin-left: 5%">วัน/เวลาสอบ</h3>
+            <label>วันสอบ : </label>
+            <input type="date" style="width: 160px" id="date" name="" placeholder=""> &nbsp;&nbsp;
+            <label>เวลาเริ่ม : </label>
+            <input type="time" style="width: 160px" id="timeStart" name="" placeholder=""> &nbsp;&nbsp;
+            <label>เวลาเลิก : </label>
+            <input type="time" style="width: 160px" id="timeEnd" name="" placeholder=""> &nbsp;&nbsp;&nbsp;&nbsp;
+            <br><br>
+            <h3 style="margin-left: 5%">ผู้คุมสอบ</h3>
+
+            <div style="text-align: center">
+                <div class="row" style="overflow:auto">
+                    <div class="column" style="background-color:#aaa;">
+                        <p>รายชื่อคนที่ต้องการ</p>
+                        <table id="getStaffToExam">
+                            <tr>
+                                <th>เลือก</th>
+                                <th>รหัสประจำตัว</th>
+                                <th>ชื่อ</th>
+                                <th>สกุล</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="column" style="background-color:#bbb;">
+                        <p>รายชื่อที่ถูกเลือก</p>
+                        <table id="pushStaffToExam">
+                            <tr>
+                                <th>เลือก</th>
+                                <th>รหัสประจำตัว</th>
+                                <th>ชื่อ</th>
+                                <th>สกุล</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <button style="margin-right: 40%" onclick="table1_to_table2()">เลือกรายชื่อที่ต้องการใส่</button>
+                <button onclick="table2_to_table1()">ถอนรายชื่อที่ใส่ออก</button>
+                <br>
+            </div>
+            <h3 style="margin-left: 5%">จัดที่นั่งสอบ</h3>
+            <div style="text-align: center">
+                <div class="row" style="overflow:auto">
+                    <div class="column" style="background-color:#aaa;">
+                        <p>รายชื่อรายชื่อนิสิต</p>
+                        <table id="getStudent">
+                            <tr>
+                                <th>รหัสประจำตัว</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="column" style="background-color:#bbb;">
+                        <p>จัดที่นั่ง</p>
+                        <table id="pushStudent">
+                            <tr>
+                                <th>เลขที่นั่ง</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!-- <div style="text-align: center"> -->
+                <input type="submit" value="Submit" onclick="insertDataExam()">
+            </div>
+        </div>
+
+        <footer class="w3-container w3-theme" style="padding:32px">
+            <p>Footer information goes here</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
